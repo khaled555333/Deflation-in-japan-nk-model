@@ -10,12 +10,21 @@ The model is solved under perfect foresight, Parameters are calibrated to values
 ## Calibration table
 
 All rates and the shock are quarterly. The simulation runs for 60 quarters (15 years).
+
 | Risk aversion | σ | 1.5 |
+
 | Discount factor | β | 0.99 |
+
 | Phillips curve slope | κ | 0.01 |
+
 | Taylor rule response to inflation | φ_π | 1.5 |
+
 | Taylor rule response to output gap | φ_x | 0.5 |
+
 | Interest rate smoothing | ρ_i | 0.80 |
+
 | Natural rate persistence | ρ_rn | 0.98 |
+
 | Starting natural rate | r_n0 | 0.5% |
+
 | Shock size (first quarter) | ε | -1.4% |
