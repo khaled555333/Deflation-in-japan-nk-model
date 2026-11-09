@@ -28,3 +28,5 @@ All rates and the shock are quarterly. The simulation runs for 60 quarters (15 y
 | Starting natural rate | r_n0 | 0.5% |
 
 | Shock size (first quarter) | ε | -1.4% |
+
+note: AI was used to help build this project
