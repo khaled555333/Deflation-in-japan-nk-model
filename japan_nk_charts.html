@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New Keynesian Model of Japan's Deflation</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="nk_data.js"></script>
+<style>
+  body { font-family: Arial, sans-serif; background: #fff; margin: 0; padding: 30px 40px; color: #333; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 56px; max-width: 1100px; }
+  .chart-title { font-size: 12px; color: #333; margin-bottom: 6px; font-weight: bold; }
+  .chart-wrap { position: relative; height: 200px; border-bottom: 1px solid #ddd; }
+  .source { font-size: 13px; color: #555; margin-top: 44px; font-style: italic; }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="grid">
+  <div><div class="chart-title">Output Gap (x)</div><div class="chart-wrap"><canvas id="c1"></canvas></div></div>
+  <div><div class="chart-title">Inflation (&pi;<sub>t</sub>)</div><div class="chart-wrap"><canvas id="c2"></canvas></div></div>
+  <div><div class="chart-title">Nominal Interest Rate (i)</div><div class="chart-wrap"><canvas id="c3"></canvas></div></div>
+  <div><div class="chart-title">Natural Rate (r_n)</div><div class="chart-wrap"><canvas id="c4"></canvas></div></div>
+  <div><div class="chart-title">Real Interest Rate (r_real)</div><div class="chart-wrap"><canvas id="c5"></canvas></div></div>
+</div>
+
+<p class="source">Source: Dynare 6.5 simulation</p>
+
+<script>
+var series = [X, PI, I, RN, RR];
+for (var p = 0; p < 5; p++) {
+  new Chart(document.getElementById("c" + (p + 1)), {
+    type: "line",
+    data: {
+      labels: Q,
+      datasets: [{ data: series[p], borderColor: "#1f77b4", borderWidth: 1.8, pointRadius: 0, fill: false, tension: 0.3 }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          title: function (c) { return "Quarter " + c[0].label; },
+          label: function (c) { return c.parsed.y.toFixed(3) + "%"; }
+        } }
+      },
+      scales: {
+        x: { grid: { color: "#f0f0f0" }, ticks: { color: "#888", font: { size: 9 }, maxTicksLimit: 8 }, border: { color: "#ccc" } },
+        y: { grid: { color: "#f0f0f0" }, ticks: { color: "#888", font: { size: 9 }, callback: function (v) { return v.toFixed(1) + "%"; } }, border: { color: "#ccc" } }
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>
